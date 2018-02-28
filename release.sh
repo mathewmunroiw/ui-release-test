@@ -54,4 +54,6 @@ echo "Current Version: v$current_version"
 suggested_next_version=$(npm version major)
 ##reset back to previous version (undo npm version major)
 reset_head=$(git reset --hard HEAD^)
+#delete tag that was made
+delete_tag=$(git tag -d $suggested_next_version)
 echo "what is the release version for '$app_name' [$suggested_next_version]:"
