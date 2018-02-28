@@ -48,7 +48,7 @@ current_version=$(echo $package | jq -r '."version"')
 
 echo "--------------"
 echo "Application: $app_name"
-echo "Current Version: $current_version"
+echo "Current Version: v$current_version"
 
 ## Get npms next version using Major Release as option
 suggested_next_version=$(npm version major --dry-run)
