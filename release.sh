@@ -35,10 +35,10 @@ elif [ $REMOTE = $BASE ]; then
     printf "\xE2\x9D\x8C Need to push\n"
     exit 0
 else
-    echo "!WARNING! Diverged"
+    printf "\xE2\x9D\x8C \xE2\x9D\x8C \xE2\x9D\x8C Master and Develop have Diverged \xE2\x9D\x8C \xE2\x9D\x8C \xE2\x9D\x8C"
     exit 0
 fi
-
+printf "\xE2\x9D\x8C \xE2\x9D\x8C \xE2\x9D\x8C Master and Develop have Diverged \xE2\x9D\x8C \xE2\x9D\x8C \xE2\x9D\x8C"
 echo -ne '#####                     (33%)\r'
 sleep 1
 echo -ne '#############             (66%)\r'
