@@ -53,5 +53,5 @@ echo "Current Version: v$current_version"
 ## Get npms next version using Major Release as option
 suggested_next_version=$(npm version major)
 ##reset back to previous version (undo npm version major)
-$(git reset --hard HEAD^)
-echo "what is the release version for '$app_name' [$suggested_next_version]"
+reset_head=$(git reset --hard HEAD^)
+echo "what is the release version for '$app_name' [$suggested_next_version]:"
