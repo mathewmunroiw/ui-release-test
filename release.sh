@@ -5,6 +5,12 @@ current_branch=$(git branch | grep \* | cut -d ' ' -f2)
 current_version=$(echo $parameters | jq -r .["\"$environment\""].common.parameters)
 
 echo "Current Branch [$current_branch]"
+
+if [ "develop" != $current_branch ]; then
+    printf "\xE2\x9D\x8C Not in develop\n"
+    exit 0
+fi
+
 echo "Target Release Branch [$target_release_branch]"
 
 if [ -z "$(git status --porcelain)" ];
@@ -32,9 +38,6 @@ else
     echo "!WARNING! Diverged"
     exit 0
 fi
-
-
-
 
 echo -ne '#####                     (33%)\r'
 sleep 1
