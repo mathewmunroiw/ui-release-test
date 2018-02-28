@@ -27,6 +27,8 @@ LOCAL=$(git rev-parse @)
 REMOTE=$(git rev-parse "$UPSTREAM")
 BASE=$(git merge-base @ "$UPSTREAM")
 
+echo "upstream:$UPSTREAM"
+
 if [ $LOCAL = $REMOTE ]; then
     printf "\xE2\x9C\x94 Up to date\n"
 elif [ $LOCAL = $BASE ]; then
@@ -36,7 +38,7 @@ elif [ $REMOTE = $BASE ]; then
     printf "\xE2\x9D\x8C Need to push\n"
     exit 0
 else
-    printf "\xE2\x9D\x8C\xE2\x9D\x8C\xE2\x9D\x8C Master and Develop have Diverged \xE2\x9D\x8C\xE2\x9D\x8C\xE2\x9D\x8C\n"
+    printf "\xE2\x9D\x8C\xE2\x9D\x8C\xE2\x9D\x8C Remote and Local Diverged \xE2\x9D\x8C\xE2\x9D\x8C\xE2\x9D\x8C\n"
     exit 0
 fi
 
@@ -58,3 +60,5 @@ reset_head=$(git reset --hard HEAD^)
 delete_tag=$(git tag -d $suggested_next_version)
 echo "what is the release version for '$app_name' [$suggested_next_version]:"
 read user_provided_version
+
+## Merge master into develop (this should not cause any conflicts)
