@@ -11,8 +11,8 @@ if [ -z "$(git status --porcelain)" ];
 then
     printf "\xE2\x9C\x94 Nothing to Commit\n"
 else
-    echo "PLEASE COMMIT YOUR CHANGE FIRST!!!"
-    echo $(git status --porcelain)
+    printf "\xE2\x9D\x8C Changes need commiting before releasing\n"
+    exit 0
 fi
 
 UPSTREAM=${1:-'@{u}'}
@@ -21,13 +21,13 @@ REMOTE=$(git rev-parse "$UPSTREAM")
 BASE=$(git merge-base @ "$UPSTREAM")
 
 if [ $LOCAL = $REMOTE ]; then
-    echo "Up-to-date"
+    printf "\xE2\x9C\x94 Up to date\n"
 elif [ $LOCAL = $BASE ]; then
-    echo "Need to pull"
+    printf "\xE2\x9D\x8C Need to pull\n"
 elif [ $REMOTE = $BASE ]; then
-    echo "Need to push"
+      printf "\xE2\x9D\x8C Need to push\n"
 else
-    echo "Diverged"
+    echo "!WARNING! Diverged"
 fi
 
 
