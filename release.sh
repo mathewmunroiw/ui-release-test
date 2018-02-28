@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-package_file='package.json'
+
+## Check status of develop branch and ensure everything is committed and up to date
 target_release_branch='master'
 current_branch=$(git branch | grep \* | cut -d ' ' -f2)
 current_version=$(echo $parameters | jq -r .["\"$environment\""].common.parameters)
@@ -39,9 +40,10 @@ else
     exit 0
 fi
 
-echo -ne '#####                     (33%)\r'
-sleep 1
-echo -ne '#############             (66%)\r'
-sleep 1
-echo -ne '#######################   (100%)\r'
-echo -ne '\n'
+## Get app name and current version in package.json
+package_file='package.json'
+package=$(cat package.json)
+app_name=$(echo package | jq -r ."name")
+current_version=$(echo package | jq -r ."version")
+
+echo "--------------"
