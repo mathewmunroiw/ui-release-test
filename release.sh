@@ -43,6 +43,7 @@ fi
 ## Get app name and current version in package.json
 package_file='package.json'
 package=$(cat package.json)
+echo $package
 app_name=$(echo package | jq -r '."name"')
 current_version=$(echo package | jq -r '."version"')
 
