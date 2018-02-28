@@ -57,3 +57,4 @@ reset_head=$(git reset --hard HEAD^)
 #delete tag that was made
 delete_tag=$(git tag -d $suggested_next_version)
 echo "what is the release version for '$app_name' [$suggested_next_version]:"
+read user_provided_version
