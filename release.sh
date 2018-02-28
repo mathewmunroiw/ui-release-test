@@ -24,10 +24,13 @@ if [ $LOCAL = $REMOTE ]; then
     printf "\xE2\x9C\x94 Up to date\n"
 elif [ $LOCAL = $BASE ]; then
     printf "\xE2\x9D\x8C Need to pull\n"
+    exit 0
 elif [ $REMOTE = $BASE ]; then
-      printf "\xE2\x9D\x8C Need to push\n"
+    printf "\xE2\x9D\x8C Need to push\n"
+    exit 0
 else
     echo "!WARNING! Diverged"
+    exit 0
 fi
 
 
