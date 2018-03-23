@@ -28,6 +28,7 @@ REMOTE=$(git rev-parse "$UPSTREAM")
 BASE=$(git merge-base @ "$UPSTREAM")
 
 echo "upstream:$UPSTREAM"
+echo "local:$LOCAL"
 
 if [ $LOCAL = $REMOTE ]; then
     printf "\xE2\x9C\x94 Up to date\n"
